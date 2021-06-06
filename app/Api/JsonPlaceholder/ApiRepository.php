@@ -32,6 +32,6 @@ abstract class ApiRepository
      */
     public function find(int $id)
     {
-        return $this->client->all($this->resource, $id);
+        return $this->client->find($this->resource, $id);
     }
 }

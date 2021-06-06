@@ -24,4 +24,12 @@ class UserController
     {
         return $this->users->all();
     }
+
+    /**
+     * Find a user.
+     */
+    public function find($id)
+    {
+        return $this->users->find($id);
+    }
 }

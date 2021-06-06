@@ -22,4 +22,23 @@ class UserControllerTest extends TestCase
             ->assertJsonFragment(['username' => 'Kamren'])
             ->assertJsonFragment(['email' => 'Rey.Padberg@karina.biz']);
     }
+
+
+    /**
+     * Test list all users
+     */
+    public function testFindUser()
+    {
+        $id = 7;
+
+        $response = $this->get('api/user/' . $id);
+
+        $response->assertStatus(200);
+
+        $user = json_decode($response->getContent());
+
+        $this->assertEquals($id, $user->id);
+        $this->assertEquals('Kurtis Weissnat', $user->name);
+        $this->assertEquals('Telly.Hoeger@billy.biz', $user->email);
+    }
 }

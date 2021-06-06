@@ -53,7 +53,7 @@ class ApiClient
         $response = $this->getHttpClient()
             ->get($this->getResourceUri($resource, $id), $options);
 
-        return $response;
+        return $this->getContentFromResponse($response);
     }
 
     /**
