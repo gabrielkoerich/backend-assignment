@@ -9,6 +9,11 @@ use App\Api\JsonPlaceholder\ApiRepository;
 class JsonPlaceholderCommentRepository extends ApiRepository
 {
     /**
+     * The cache minutes.
+     */
+    protected int $cacheMinutes = 5;
+
+    /**
      * The resource
      */
     protected string $resource = 'comments';

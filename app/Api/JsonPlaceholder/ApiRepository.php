@@ -2,6 +2,7 @@
 
 namespace App\Api\JsonPlaceholder;
 
+use PDOException;
 use Carbon\Carbon;
 use RuntimeException;
 use Illuminate\Support\Arr;
@@ -143,7 +144,15 @@ abstract class ApiRepository
             $data['updated_at'] = now();
         }
 
-        return DB::table($this->resource)->insert($data->toArray());
+        try {
+            DB::beginTransaction();
+
+            return tap(DB::table($this->resource)->insert($data->toArray()), fn () => DB::commit());
+        } catch (PDOException $e) {
+            DB::rollback();
+
+            return false;
+        }
     }
 
     /**

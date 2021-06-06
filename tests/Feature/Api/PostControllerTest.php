@@ -69,6 +69,7 @@ class PostControllerTest extends TestCase
     {
         // Cache users first bc of foreign keys
         $this->get('api/user');
+        $this->get('api/post');
 
         $id = 3;
 
