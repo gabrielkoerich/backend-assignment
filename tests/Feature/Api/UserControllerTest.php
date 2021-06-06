@@ -58,6 +58,9 @@ class UserControllerTest extends TestCase
      */
     public function testListUserPosts()
     {
+        // Cache users first bc of foreign keys
+        $response = $this->get('api/user');
+
         $id = 3;
 
         $response = $this->get("api/user/{$id}/posts");

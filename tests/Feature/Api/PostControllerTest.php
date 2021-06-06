@@ -16,6 +16,9 @@ class PostControllerTest extends TestCase
      */
     public function testGetAllPosts()
     {
+        // Cache users first bc of foreign keys
+        $this->get('api/user');
+
         $response = $this->get('api/post');
 
         $response->assertStatus(200)
@@ -34,6 +37,9 @@ class PostControllerTest extends TestCase
      */
     public function testFindPost()
     {
+        // Cache users first bc of foreign keys
+        $this->get('api/user');
+
         $id = 7;
 
         $response = $this->get('api/post/' . $id);
@@ -61,6 +67,9 @@ class PostControllerTest extends TestCase
      */
     public function testListPostComments()
     {
+        // Cache users first bc of foreign keys
+        $this->get('api/user');
+
         $id = 3;
 
         $response = $this->get("api/post/{$id}/comments");
