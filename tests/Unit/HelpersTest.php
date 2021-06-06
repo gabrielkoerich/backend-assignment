@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use Throwable;
 use Illuminate\Support\Collection;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
@@ -21,6 +22,15 @@ class HelperTest extends TestCase
 
         $path = getcwd() . '/tests/Unit/stubs';
         $directories = ['a', 'b', 'c'];
+
+        foreach ($directories as $directory) {
+            try {
+                mkdir($path . '/' . $directory);
+            } catch (Throwable $e) {
+                //
+            }
+        }
+
         $extensions = ['', '.txt', '.php', '.md'];
 
         for ($i = 0; $i < $files; $i++) {
