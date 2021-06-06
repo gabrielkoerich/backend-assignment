@@ -21,14 +21,12 @@ class HelperTest extends TestCase
         $files = rand(500, 9999);
 
         $path = getcwd() . '/tests/Unit/stubs';
+
         $directories = ['a', 'b', 'c'];
 
+        @mkdir($path);
         foreach ($directories as $directory) {
-            try {
-                mkdir($path . '/' . $directory);
-            } catch (Throwable $e) {
-                //
-            }
+            @mkdir($path . '/' . $directory);
         }
 
         $extensions = ['', '.txt', '.php', '.md'];
