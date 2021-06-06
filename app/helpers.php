@@ -25,13 +25,16 @@ function delete_files_matching(string $path, string $pattern): int
 
 function array_sort_numbers(array $numbers)
 {
+    $max = max($numbers);
+    $count = count($numbers);
+
     // count each possible value
-    for ($i = 0; $i <= max($numbers); $i++) {
+    for ($i = 0; $i <= $max; $i++) {
         $counts[$i] = 0;
     }
 
     // Increment counts of number
-    for ($i = 0; $i < count($numbers); $i++) {
+    for ($i = 0; $i < $count; $i++) {
         $counts[$numbers[$i]]++;
     }
 
@@ -39,7 +42,7 @@ function array_sort_numbers(array $numbers)
     $placement = 0;
 
     // Iterate each number to find it correct placement
-    for ($n = 0; $n <= max($numbers); $n++) {
+    for ($n = 0; $n <= $max; $n++) {
         // if ($counts[$n]) {
         //     echo PHP_EOL . 'current number: ' . $n;
         // }
