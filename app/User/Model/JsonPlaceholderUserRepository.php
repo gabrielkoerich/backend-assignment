@@ -4,27 +4,12 @@ namespace App\User\Model;
 
 use Illuminate\Support\Collection;
 use App\Api\JsonPlaceholder\ApiClient;
+use App\Api\JsonPlaceholder\ApiRepository;
 
-class JsonPlaceholderUserRepository
+class JsonPlaceholderUserRepository extends ApiRepository
 {
     /**
      * The resource
      */
-    private string $resource = 'users';
-
-    /**
-     * Create a new instance.
-     */
-    public function __construct(ApiClient $client)
-    {
-        $this->client = $client;
-    }
-
-    /**
-     * Get all resources
-     */
-    public function all(): Collection
-    {
-        return $this->client->all($this->resource);
-    }
+    protected string $resource = 'users';
 }
