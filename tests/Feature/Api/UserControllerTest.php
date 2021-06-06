@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserControllerTest extends TestCase
 {
@@ -12,9 +13,19 @@ class UserControllerTest extends TestCase
 
     /**
      * Test list all users
+     *
+     * @group now
      */
     public function testGetAllUsers()
     {
+        $response = $this->get('api/user');
+
+        $response->assertStatus(200)
+            ->assertJsonFragment(['name' => 'Leanne Graham'])
+            ->assertJsonFragment(['username' => 'Kamren'])
+            ->assertJsonFragment(['email' => 'Rey.Padberg@karina.biz']);
+
+        // Call it again, it will be cached on the database:
         $response = $this->get('api/user');
 
         $response->assertStatus(200)
