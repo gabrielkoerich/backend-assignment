@@ -137,5 +137,3 @@ class HelpersTest extends TestCase
         echo PHP_EOL . "It would take {$days} days to run 1 billion times";
     }
 }
-
-

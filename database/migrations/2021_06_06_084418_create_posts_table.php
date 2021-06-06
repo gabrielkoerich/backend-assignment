@@ -28,7 +28,6 @@ class CreatePostsTable extends Migration
             // Use:
             // $builder->whereRaw("MATCH(title) AGAINST(?)", [$search])
             DB::statement('ALTER TABLE posts ADD FULLTEXT search(title, body)');
-
         } catch (Throwable $e) {
             // Skip if not running on MySQL
         }

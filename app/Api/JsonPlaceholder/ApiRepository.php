@@ -151,7 +151,7 @@ abstract class ApiRepository
      */
     private function parseRecord(array $record): array
     {
-         foreach ($record as $key => $value) {
+        foreach ($record as $key => $value) {
             if (is_array($value)) {
                 unset($record[$key]);
             }
