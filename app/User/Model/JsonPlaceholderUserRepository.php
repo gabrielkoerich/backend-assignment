@@ -15,6 +15,16 @@ class JsonPlaceholderUserRepository extends ApiRepository
     protected string $resource = 'users';
 
     /**
+     * The cache model.
+     */
+    // protected ?string $cacheModel = User::class;
+
+    /**
+     * The cache minutes.
+     */
+    protected int $cacheMinutes = 5;
+
+    /**
      * Define posts relation
      */
     public function posts(int $userId): JsonPlaceholderPostRepository

@@ -14,6 +14,11 @@ class JsonPlaceholderPostRepository extends ApiRepository
     protected string $resource = 'posts';
 
     /**
+     * The cache minutes.
+     */
+    protected int $cacheMinutes = 5;
+
+    /**
      * Define comments relation
      */
     public function comments(int $postId): JsonPlaceholderCommentRepository
