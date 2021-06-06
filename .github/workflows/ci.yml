@@ -17,6 +17,13 @@ jobs:
           php-version: ${{ matrix.php }}
           extensions: mongodb, redis
 
+      - name: Setup MySQL
+      - uses: mirromutth/mysql-action@v1.1
+        with:
+          mysql version: '8.0'
+          mysql database: 'laravel'
+          mysql user: 'root'
+
       - name: Checkout
         uses: actions/checkout@v2
 
