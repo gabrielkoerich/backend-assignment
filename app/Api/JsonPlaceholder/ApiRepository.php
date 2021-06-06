@@ -85,7 +85,7 @@ abstract class ApiRepository
      */
     private function shouldCache()
     {
-        return $this->cacheMinutes > 0 || $this->cacheMinutes === -1 ;
+        return $this->cacheMinutes > 0;
     }
 
     /**

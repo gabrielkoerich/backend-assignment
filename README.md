@@ -2,6 +2,8 @@
 
 [![PHP Tests](https://github.com/gabrielkoerich/backend-assignment/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrielkoerich/backend-assignment/actions/workflows/ci.yml)
 
+## Basic CS
+
 ### A) Design a SQL database to store NBA players, teams and games (column and table contents are all up to you). 
 
 Users mostly query game results by date and team name. 
@@ -165,5 +167,21 @@ It would take 95.436430555556 hours to run 10 billion times
 It would take 3.9765179398148 days to run 10 billion times
 
 ### D) Write a function that sorts 10000 powers (a^b) where a and b are random numbers between 100 and 10000? Estimate how long it would take on your machine?
+
+
+## Advanced/Practical
+
+I first wrote a [APIClient](https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiClient.php) to request the JsonPlaceholder API.
+
+The Client is responsible for making the requests and translate them to a Collection instance if is more than one resource or to array if only one.
+
+This Client is used by the abstract (APIRepository)[https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiRepository.php]
+
+
+
+
+
+
+
 
 
