@@ -1,19 +1,19 @@
 <?php
 
-namespace Database\Factories;
+namespace Database\Factories\User\Model;
 
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use App\User\Model\InternalUser;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
-class UserFactory extends Factory
+class InternalUserFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = InternalUser::class;
 
     /**
      * Define the model's default state.
