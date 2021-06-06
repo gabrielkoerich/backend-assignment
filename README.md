@@ -13,11 +13,11 @@ The second most frequent query is players statistics by player name.
 - DATETIME updated_at
 
 ```php
-    Schema::create('teams', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->timestamps();
-    });
+Schema::create('teams', function (Blueprint $table) {
+    $table->id();
+    $table->string('name');
+    $table->timestamps();
+});
 ```
 
 ### players
@@ -28,12 +28,12 @@ The second most frequent query is players statistics by player name.
 - DATETIME updated_at
 
 ```php
-    Schema::create('players', function (Blueprint $table) {
-        $table->id();
-        $table->string('name')->index();
-        $table->date('birthday')->nullable();
-        $table->timestamps();
-    });
+Schema::create('players', function (Blueprint $table) {
+    $table->id();
+    $table->string('name')->index();
+    $table->date('birthday')->nullable();
+    $table->timestamps();
+});
 ```
 
 ### games
@@ -46,24 +46,24 @@ The second most frequent query is players statistics by player name.
 - DATETIME updated_at
 
 ```php
-    Schema::create('games', function (Blueprint $table) {
-        $table->id();
-        $table->datetime('datetime');
-        $table->string('location');
-        $table->unsignedBigInteger('local_team_id');
-        $table->unsignedBigInteger('foreign_team_id');
-        $table->timestamps();
+Schema::create('games', function (Blueprint $table) {
+    $table->id();
+    $table->datetime('datetime');
+    $table->string('location');
+    $table->unsignedBigInteger('local_team_id');
+    $table->unsignedBigInteger('foreign_team_id');
+    $table->timestamps();
 
-        $table->foreign('local_team_id')
-            ->references('id')
-            ->on('teams')
-            ->onDelete('restrict');
+    $table->foreign('local_team_id')
+        ->references('id')
+        ->on('teams')
+        ->onDelete('restrict');
 
-        $table->foreign('foreign_team_id')
-            ->references('id')
-            ->on('teams')
-            ->onDelete('restrict');
-    });
+    $table->foreign('foreign_team_id')
+        ->references('id')
+        ->on('teams')
+        ->onDelete('restrict');
+});
 ```
 
 ### game_player
@@ -75,23 +75,23 @@ The second most frequent query is players statistics by player name.
 - DATETIME updated_at
 
 ```php
-    Schema::create('game_player', function (Blueprint $table) {
-        $table->id();
-        $table->unsignedBigInteger('game_id');
-        $table->unsignedBigInteger('player_d');
-        $table->boolean('starter')
-        $table->timestamps();
+Schema::create('game_player', function (Blueprint $table) {
+    $table->id();
+    $table->unsignedBigInteger('game_id');
+    $table->unsignedBigInteger('player_d');
+    $table->boolean('starter')
+    $table->timestamps();
 
-        $table->foreign('game_id')
-            ->references('id')
-            ->on('games')
-            ->onDelete('restrict');
+    $table->foreign('game_id')
+        ->references('id')
+        ->on('games')
+        ->onDelete('restrict');
 
-        $table->foreign('player_d')
-            ->references('id')
-            ->on('players')
-            ->onDelete('restrict');
-    });
+    $table->foreign('player_d')
+        ->references('id')
+        ->on('players')
+        ->onDelete('restrict');
+});
 ```
 
 ### game_events
@@ -104,27 +104,27 @@ The second most frequent query is players statistics by player name.
 - DATETIME updated_at
 
 ```php
-    Schema::create('game_events', function (Blueprint $table) {
-        $table->id();
-        $table->unsignedBigInteger('game_id');
-        $table->unsignedBigInteger('player_id')->nullable();
-        $table->string('event')
-        $table->unsignedBigInteger('replaced_player_id')->nullable();
-        $table->timestamps();
+Schema::create('game_events', function (Blueprint $table) {
+    $table->id();
+    $table->unsignedBigInteger('game_id');
+    $table->unsignedBigInteger('player_id')->nullable();
+    $table->string('event')
+    $table->unsignedBigInteger('replaced_player_id')->nullable();
+    $table->timestamps();
 
-        $table->foreign('game_id')
-            ->references('id')
-            ->on('games')
-            ->onDelete('restrict');
+    $table->foreign('game_id')
+        ->references('id')
+        ->on('games')
+        ->onDelete('restrict');
 
-        $table->foreign('player_id')
-            ->references('id')
-            ->on('players')
-            ->onDelete('restrict');
+    $table->foreign('player_id')
+        ->references('id')
+        ->on('players')
+        ->onDelete('restrict');
 
-        $table->foreign('replaced_player_id')
-            ->references('id')
-            ->on('players')
-            ->onDelete('restrict');
-    });
+    $table->foreign('replaced_player_id')
+        ->references('id')
+        ->on('players')
+        ->onDelete('restrict');
+});
 ```
