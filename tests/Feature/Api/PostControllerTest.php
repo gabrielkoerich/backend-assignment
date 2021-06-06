@@ -77,5 +77,10 @@ class PostControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJsonFragment(['name' => 'aut inventore non pariatur sit vitae voluptatem sapiente']);
+
+        $response = $this->get("api/post/{$id}/comments");
+
+        $response->assertStatus(200)
+            ->assertJsonFragment(['name' => 'aut inventore non pariatur sit vitae voluptatem sapiente']);
     }
 }
