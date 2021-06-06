@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\User\Model\InternalUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
 class BasicTest extends TestCase
 {
     /**
      * A basic test example.
      */
-    public function test_example()
+    public function testHome()
     {
         $response = $this->get('/');
 
