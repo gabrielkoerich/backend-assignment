@@ -152,7 +152,9 @@ Tests: https://github.com/gabrielkoerich/backend-assignment/blob/master/tests/Un
 On my machine (macbook pro m1 16gb) this was the results:
 
 Run 1000 times in 11.060375 microseconds
+
 It would take 30.723263888889 hours to run 10 billion times
+
 It would take 1.2801359953704 days to run 10 billion times
 
 Using PHP 8.
@@ -163,7 +165,9 @@ https://github.com/gabrielkoerich/backend-assignment/runs/2756979907?check_suite
 
 Results:
 Run 1000 times in 34.357115 microseconds
+
 It would take 95.436430555556 hours to run 10 billion times
+
 It would take 3.9765179398148 days to run 10 billion times
 
 ### D) Write a function that sorts 10000 powers (a^b) where a and b are random numbers between 100 and 10000? Estimate how long it would take on your machine?
@@ -174,8 +178,11 @@ https://github.com/gabrielkoerich/backend-assignment/blob/master/tests/Unit/Help
 Is marked as skipped as it is too slow
 
 Results:
+
 Run 1 times in 95986.362042 microseconds
+
 It would take 266628783.45 hours to run 1 billion times
+
 It would take 11109532.64375 days to run 1 billion times.......         
 
 Really bad result
