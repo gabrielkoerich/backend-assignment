@@ -51,8 +51,6 @@ abstract class ApiRepository
             return $this->getFromCache();
         }
 
-        $this->invalidateCache();
-
         $data = $this->client->all($this->resource);
 
         if ($this->shouldCache()) {
@@ -65,15 +63,25 @@ abstract class ApiRepository
     /**
      * Find a resource by id.
      */
-    public function find(int $id)
+    public function find(int $id): array
     {
-        return $this->client->find($this->resource, $id);
+        if ($this->shouldGetFromCache()) {
+            return $this->getFromCache($id);
+        }
+
+        $data = $this->client->find($this->resource, $id);
+
+        if ($this->shouldCache()) {
+            $this->cache($data);
+        }
+
+        return $data;
     }
 
     /**
      * Set the related resource.
      */
-    public function related(int $id)
+    public function related(int $id): self
     {
         $this->client->fromRelation($this->resource, $id);
 
@@ -122,38 +130,43 @@ abstract class ApiRepository
         }
 
         if ($data instanceof Collection) {
-            $data = $data->map(function ($record) {
-                foreach ($record as $key => $value) {
-                    if (is_array($value)) {
-                        unset($record[$key]);
-                    }
-
-                    if (Str::snake($key) !== $key) {
-                        $record[Str::snake($key)] = $value;
-
-                        unset($record[$key]);
-                    }
-                }
-
-                $record['created_at'] = now();
-                $record['updated_at'] = now();
-
-                return $record;
-            });
+            $data = $data->map(fn ($record) => $this->parseRecord($record))->toArray();
         } else {
-            $data['created_at'] = now();
-            $data['updated_at'] = now();
+            $data = $this->parseRecord($data);
         }
 
         try {
             DB::beginTransaction();
 
-            return tap(DB::table($this->resource)->insert($data->toArray()), fn () => DB::commit());
+            return tap(DB::table($this->resource)->insert($data), fn () => DB::commit());
         } catch (PDOException $e) {
             DB::rollback();
 
             return false;
         }
+    }
+
+    /**
+     * Parse a givne record to cache.
+     */
+    private function parseRecord(array $record): array
+    {
+         foreach ($record as $key => $value) {
+            if (is_array($value)) {
+                unset($record[$key]);
+            }
+
+            if (Str::snake($key) !== $key) {
+                $record[Str::snake($key)] = $value;
+
+                unset($record[$key]);
+            }
+        }
+
+        $record['created_at'] = now();
+        $record['updated_at'] = now();
+
+        return $record;
     }
 
     /**
@@ -185,8 +198,6 @@ abstract class ApiRepository
             return $builder->get();
         }
 
-        return $builder->where('id', $id)
-            ->first()
-            ->toArray();
+        return (array) $builder->where('id', $id)->first();
     }
 }
