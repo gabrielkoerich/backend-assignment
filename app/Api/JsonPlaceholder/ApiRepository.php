@@ -21,6 +21,7 @@ abstract class ApiRepository
     /**
      * The DatabaseApiCache client
      */
+    // Cache implementation should be moved to other class
     // protected DatabaseApiCache $cache;
 
     /**
