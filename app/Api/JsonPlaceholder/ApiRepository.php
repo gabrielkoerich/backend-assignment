@@ -17,6 +17,11 @@ abstract class ApiRepository
     protected ApiClient $client;
 
     /**
+     * The DatabaseApiCache client
+     */
+    // protected DatabaseApiCache $cache;
+
+    /**
      * The cache minutes.
      */
     protected int $cacheMinutes = 0;
@@ -109,8 +114,8 @@ abstract class ApiRepository
      */
     private function cache(Collection|array $data): bool
     {
-        if (! $this->cacheModel) {
-            throw new RuntimeException('Cache model not defined');
+        if (! $this->shouldCache()) {
+            return false;
         }
 
         if ($data instanceof Collection) {
