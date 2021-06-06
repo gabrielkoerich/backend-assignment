@@ -168,6 +168,18 @@ It would take 3.9765179398148 days to run 10 billion times
 
 ### D) Write a function that sorts 10000 powers (a^b) where a and b are random numbers between 100 and 10000? Estimate how long it would take on your machine?
 
+Run it all here:
+https://github.com/gabrielkoerich/backend-assignment/blob/master/tests/Unit/HelpersTest.php#L95
+
+Is marked as skipped as it is too slow
+
+Results:
+Run 1 times in 95986.362042 microseconds
+It would take 266628783.45 hours to run 1 billion times
+It would take 11109532.64375 days to run 1 billion times.......         
+
+Really bad result
+
 ## Advanced/Practical
 
 The application is structured by contexts, I created the Post context, where it would keep all realted to Posts. Same for the User.
@@ -196,6 +208,34 @@ As we will query users a lot by email, I added a index to the `email` column.
 
 To search posts by title (eventually) I added a FULLTEXT search, not available on sqlite (in which the tests are running).
 
+## Setup and run locally
+
+1) Clone the repository and install the composer dependencies:
+```bash
+$ git clone git@github.com:gabrielkoerich/backend-assignment.git
+$ cd backend-assignment
+$ composer install
+```
+
+2) Copy the .env.example file and edit it with your environment config:
+```bash
+$ cp .env.example .env
+```
+
+3) Run migrations and seeds:
+```bash
+$ php artisan migrate
+```
+
+Request the API routes:
+
+GET `/api/user`
+GET `/api/user/{id}`
+GET `/api/user/{id}/posts`
+
+GET `/api/post`
+GET `/api/post/{id}`
+GET `/api/post/{id}/comments`
 
 
 
