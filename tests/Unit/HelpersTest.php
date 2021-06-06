@@ -7,6 +7,9 @@ use PHPUnit\Framework\TestCase;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Test helpers defined on app\helpers.php
+ */
 class HelperTest extends TestCase
 {
     /**
@@ -27,7 +30,22 @@ class HelperTest extends TestCase
         $deleted = delete_files_matching($path, '0aH*');
 
         $this->assertEquals($files, $deleted);
+    }
 
-        dump("Deleted $deleted files");
+    public function testOrderRandomNumbers()
+    {
+        for ($i = 0; $i < 11; $i++) {
+            $numbers[] = rand(0, 99);
+        }
+
+        $sorted = array_sort_numbers($numbers);
+
+        // Native sort numbers
+        sort($numbers);
+
+        // Assert is the same
+        $this->assertEquals($sorted, $numbers);
     }
 }
+
+

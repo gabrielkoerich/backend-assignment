@@ -3,6 +3,10 @@
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\Finder\SplFileInfo;
 
+/**
+ * Find files on a given directory
+ * with a given pattern and delete them.
+ */
 function delete_files_matching(string $path, string $pattern): int
 {
     $files = Finder::create()
@@ -17,4 +21,43 @@ function delete_files_matching(string $path, string $pattern): int
     }
 
     return count($deleted ?? []);
+}
+
+function array_sort_numbers(array $numbers)
+{
+    // count each possible value
+    for ($i = 0; $i <= max($numbers); $i++) {
+        $counts[$i] = 0;
+    }
+
+    // Increment counts of number
+    for ($i = 0; $i < count($numbers); $i++) {
+        $counts[$numbers[$i]]++;
+    }
+
+    dump($counts);
+
+    // The first placement
+    $placement = 0;
+
+    // Iterate each number to find it correct placement
+    for ($n = 0; $n <= max($numbers); $n++) {
+        if ($counts[$n]) {
+            echo PHP_EOL . 'current number: ' . $n;
+        }
+
+        // Iterate each count until the current number
+        // If no count for that number is 0, it will be skipped as $i < 0
+        for ($i = 0; $i < $counts[$n]; $i++) {
+            echo '/ count: ' . $i;
+            echo ' / placement: ' . $placement;
+
+            // Set placement
+            $sorted[$placement] = $n;
+
+            $placement++;
+        }
+    }
+
+    return $sorted;
 }
