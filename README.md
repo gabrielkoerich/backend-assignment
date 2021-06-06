@@ -230,13 +230,16 @@ $ php artisan migrate
 Request the API routes:
 
 GET `/api/user`
+
 GET `/api/user/{id}`
+
 GET `/api/user/{id}/posts`
 
 GET `/api/post`
-GET `/api/post/{id}`
-GET `/api/post/{id}/comments`
 
+GET `/api/post/{id}`
+
+GET `/api/post/{id}/comments`
 
 
 
