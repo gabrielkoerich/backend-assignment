@@ -1,5 +1,7 @@
 # Backend Assignment
 
+[![PHP Tests](https://github.com/gabrielkoerich/backend-assignment/actions/workflows/ci.yml/badge.svg)](https://github.com/gabrielkoerich/backend-assignment/actions/workflows/ci.yml)
+
 ## A) Design a SQL database to store NBA players, teams and games (column and table contents are all up to you). 
 
 Users mostly query game results by date and team name. 

@@ -1,4 +1,4 @@
-name: PHP Tests + NPM Build
+name: PHP Tests
 
 on: [push]
 
