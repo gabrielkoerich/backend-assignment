@@ -11,7 +11,7 @@ use Symfony\Component\Finder\SplFileInfo;
 /**
  * Test helpers defined on app\helpers.php
  */
-class HelperTest extends TestCase
+class HelpersTest extends TestCase
 {
     /**
      * Test find files begining with "0aH" and delete them
