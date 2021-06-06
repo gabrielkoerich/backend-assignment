@@ -35,6 +35,8 @@ jobs:
         run: |
           composer --version
           composer install --prefer-dist
+          cp .env.example .env
+          php artisan key:generate
 
       - name: Execute tests via phpunit
         run: vendor/bin/phpunit
