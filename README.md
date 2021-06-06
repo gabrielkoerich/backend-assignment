@@ -168,15 +168,33 @@ It would take 3.9765179398148 days to run 10 billion times
 
 ### D) Write a function that sorts 10000 powers (a^b) where a and b are random numbers between 100 and 10000? Estimate how long it would take on your machine?
 
-
 ## Advanced/Practical
+
+The application is structured by contexts, I created the Post context, where it would keep all realted to Posts. Same for the User.
+
+The API namespace has the base classes for API / integrations implementations. 
+
+I'm not a big fan of the base structure of laravel.
 
 I first wrote a [APIClient](https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiClient.php) to request the JsonPlaceholder API.
 
 The Client is responsible for making the requests and translate them to a Collection instance if is more than one resource or to array if only one.
 
-This Client is used by the abstract (APIRepository)[https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiRepository.php]
+This Client is used by the abstract (APIRepository)[https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiRepository.php], which is responsible to set the resource to make the requests.
 
+It is also responsible for caching the request if the property `$cacheMinutes` is greater than 0. The cache is handled automatically. It's kind of weird to implement cache this way, but it works.
+
+Probably this class is doing too much and the cache should be implemented on its own class and injected on that one.
+
+I created the tables for caching using the migrations:
+
+https://github.com/gabrielkoerich/backend-assignment/blob/master/database/migrations/2021_06_06_084413_create_users_table.php
+https://github.com/gabrielkoerich/backend-assignment/blob/master/database/migrations/2021_06_06_084418_create_posts_table.php
+https://github.com/gabrielkoerich/backend-assignment/blob/master/database/migrations/2021_06_06_084437_create_comments_table.php
+
+As we will query users a lot by email, I added a index to the `email` column.
+
+To search posts by title (eventually) I added a FULLTEXT search, not available on sqlite (in which the tests are running).
 
 
 
