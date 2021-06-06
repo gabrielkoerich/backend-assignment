@@ -5,6 +5,7 @@ namespace Tests\Feature\Api;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class PostControllerTest extends TestCase
 {
@@ -19,6 +20,12 @@ class PostControllerTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJsonFragment(['title' => 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit']);
+
+        // Run again, cache hit
+        $response = $this->get('api/post');
+
+        $response->assertStatus(200)
+            ->assertJsonFragment(['title' => 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit']);
     }
 
 
@@ -29,6 +36,16 @@ class PostControllerTest extends TestCase
     {
         $id = 7;
 
+        $response = $this->get('api/post/' . $id);
+
+        $response->assertStatus(200);
+
+        $post = json_decode($response->getContent());
+
+        $this->assertEquals($id, $post->id);
+        $this->assertEquals('magnam facilis autem', $post->title);
+
+        // Run again, cache hit
         $response = $this->get('api/post/' . $id);
 
         $response->assertStatus(200);
