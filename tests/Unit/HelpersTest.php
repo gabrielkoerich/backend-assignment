@@ -40,6 +40,10 @@ class HelperTest extends TestCase
 
         $sorted = array_sort_numbers($numbers);
 
+        // $alternative = array_sort_numbers_alternative($numbers);
+
+        // $this->assertEquals($sorted, $alternative);
+
         // Native sort numbers
         sort($numbers);
 

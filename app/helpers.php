@@ -35,8 +35,6 @@ function array_sort_numbers(array $numbers)
         $counts[$numbers[$i]]++;
     }
 
-    dump($counts);
-
     // The first placement
     $placement = 0;
 
@@ -60,4 +58,19 @@ function array_sort_numbers(array $numbers)
     }
 
     return $sorted;
+}
+
+// Tried a alternative simpler version,
+// but it won't work if any number is repeated
+function array_sort_numbers_alternative(array $numbers)
+{
+    for ($i = 0; $i <= max($numbers); $i++) {
+        $counts[$i] = 0;
+    }
+
+    for ($i = 0; $i < count($numbers); $i++) {
+        $counts[$numbers[$i]]++;
+    }
+
+    return array_keys(array_filter($counts));
 }
