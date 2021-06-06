@@ -19,6 +19,11 @@ class ApiClient
     private string $host = 'https://jsonplaceholder.typicode.com';
 
     /**
+     * The related resource
+     */
+    private array $relation = [];
+
+    /**
      * Create a new instance.
      */
     public function __construct(Client $http = null)
@@ -32,6 +37,16 @@ class ApiClient
     public function getHttpClient(): Client
     {
         return $this->http ?: new Client;
+    }
+
+    /**
+     * Specify the request should be loaded in a related resource
+     */
+    public function fromRelation(string $resource, int $id)
+    {
+        $this->relation = [$resource, $id];
+
+        return $this;
     }
 
     /**
@@ -61,6 +76,17 @@ class ApiClient
      */
     private function getResourceUri(string $resource, int $id = null): string
     {
+        if (count($this->relation)) {
+            [$relatedResource, $relatedId] = $this->relation;
+
+            return vsprintf('%s/%s/%s/%s', [
+                $this->host,
+                $relatedResource,
+                $relatedId,
+                $resource
+            ]);
+        }
+
         return vsprintf('%s/%s/%s', [
             $this->host,
             $resource,

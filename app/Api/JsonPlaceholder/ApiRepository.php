@@ -7,6 +7,11 @@ use Illuminate\Support\Collection;
 abstract class ApiRepository
 {
     /**
+     * The Api client
+     */
+    protected ApiClient $client;
+
+    /**
      * The resource
      */
     protected string $resource;
@@ -33,5 +38,12 @@ abstract class ApiRepository
     public function find(int $id)
     {
         return $this->client->find($this->resource, $id);
+    }
+
+    public function fromRelation(string $resource, int $id)
+    {
+        $this->client->fromRelation($resource, $id);
+
+        return $this;
     }
 }
