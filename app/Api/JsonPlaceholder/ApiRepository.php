@@ -113,7 +113,7 @@ abstract class ApiRepository
 
         $seconds = Carbon::now()->diffInSeconds(new Carbon($max));
 
-        return tap(($seconds * 60) <= $this->cacheMinutes, function (bool $should) {
+        return tap(($seconds / 60) <= $this->cacheMinutes, function (bool $should) {
             if ($should === false) {
                 $this->invalidateCache();
             }
