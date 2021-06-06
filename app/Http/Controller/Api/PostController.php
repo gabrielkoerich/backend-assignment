@@ -25,7 +25,7 @@ class PostController
     /**
      * Find a post.
      */
-    public function find($id)
+    public function find(int $id)
     {
         return $this->posts->find($id);
     }
@@ -33,7 +33,7 @@ class PostController
     /**
      * Find all post comments posts
      */
-    public function findComments($id)
+    public function findComments(int $id)
     {
         return $this->posts->comments($id)->all();
     }

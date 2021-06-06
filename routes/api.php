@@ -18,13 +18,17 @@ use Illuminate\Support\Facades\Route;
  * User API routes
  */
 Route::get('/user', [App\Http\Controller\Api\UserController::class, 'index']);
-Route::get('/user/{id}', [App\Http\Controller\Api\UserController::class, 'find']);
-Route::get('/user/{id}/posts', [App\Http\Controller\Api\UserController::class, 'findPosts']);
+Route::get('/user/{id}', [App\Http\Controller\Api\UserController::class, 'find'])
+    ->where('id', '[0-9]+');
+Route::get('/user/{id}/posts', [App\Http\Controller\Api\UserController::class, 'findPosts'])
+    ->where('id', '[0-9]+');
 
 
 /**
  * Post API routes
  */
 Route::get('/post', [App\Http\Controller\Api\PostController::class, 'index']);
-Route::get('/post/{id}', [App\Http\Controller\Api\PostController::class, 'find']);
-Route::get('/post/{id}/comments', [App\Http\Controller\Api\PostController::class, 'findComments']);
+Route::get('/post/{id}', [App\Http\Controller\Api\PostController::class, 'find'])
+    ->where('id', '[0-9]+');
+Route::get('/post/{id}/comments', [App\Http\Controller\Api\PostController::class, 'findComments'])
+    ->where('id', '[0-9]+');

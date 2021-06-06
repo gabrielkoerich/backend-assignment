@@ -28,7 +28,7 @@ class UserController
     /**
      * Find a user.
      */
-    public function find($id)
+    public function find(int $id)
     {
         return $this->users->find($id);
     }
@@ -36,7 +36,7 @@ class UserController
     /**
      * Find all user posts
      */
-    public function findPosts($id)
+    public function findPosts(int $id)
     {
         return $this->users->posts($id)->all();
     }
