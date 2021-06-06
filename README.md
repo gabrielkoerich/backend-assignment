@@ -6,7 +6,7 @@ Users mostly query game results by date and team name.
 
 The second most frequent query is players statistics by player name.
 
-teams
+### teams
 - UNSIGNED BIGINT AUTO_INCREMENTS id
 - VARCHAR(255) name INDEX
 - DATETIME created_at
@@ -20,7 +20,7 @@ teams
     });
 ```
 
-players
+### players
 - UNSIGNED BIGINT AUTO_INCREMENTS id
 - VARCHAR(255) name INDEX
 - DATE birthday
@@ -28,15 +28,15 @@ players
 - DATETIME updated_at
 
 ```php
-    Schema::create('teams', function (Blueprint $table) {
+    Schema::create('players', function (Blueprint $table) {
         $table->id();
         $table->string('name')->index();
-        $table->date('birthday');
+        $table->date('birthday')->nullable();
         $table->timestamps();
     });
 ```
 
-games
+### games
 - UNSIGNED BIGINT AUTO_INCREMENTS id
 - DATETIME datetime
 - VARCHAR(255) location
@@ -66,7 +66,7 @@ games
     });
 ```
 
-game_player
+### game_player
 - UNSIGNED BIGINT AUTO_INCREMENTS id
 - UNSIGNED BIGINT game_id FOREIGN KEY on teams id
 - UNSIGNED BIGINT player_id FOREIGN KEY on players id
@@ -94,7 +94,7 @@ game_player
     });
 ```
 
-game_events
+### game_events
 - UNSIGNED BIGINT AUTO_INCREMENTS id
 - UNSIGNED BIGINT game_id FOREIGN KEY on teams id
 - UNSIGNED BIGINT player_id NULLABLE FOREIGN KEY on players id
@@ -104,7 +104,7 @@ game_events
 - DATETIME updated_at
 
 ```php
-    Schema::create('game_player', function (Blueprint $table) {
+    Schema::create('game_events', function (Blueprint $table) {
         $table->id();
         $table->unsignedBigInteger('game_id');
         $table->unsignedBigInteger('player_id')->nullable();
