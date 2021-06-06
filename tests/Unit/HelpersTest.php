@@ -33,6 +33,10 @@ class HelperTest extends TestCase
     }
 
     public function testOrderRandomNumbers()
+    /**
+     * Test function to sort random small numbers
+     */
+    public function testOrderRandomSmallNumbers()
     {
         for ($i = 0; $i < 11; $i++) {
             $numbers[] = rand(0, 99);
@@ -70,16 +74,16 @@ class HelperTest extends TestCase
 
         echo PHP_EOL . "Run {$times} times in {$microseconds} microseconds";
 
-        $biMicroseconds = 1e+10 * $microseconds;
+        $biMicroseconds = (1e+10 * $microseconds) / $times * 1000;
 
         $seconds = $biMicroseconds / 1e+6;
         $hours = $seconds / 60 / 60;
 
-        echo PHP_EOL . "It would take {$hours} hours to run 1 billion times";
+        echo PHP_EOL . "It would take {$hours} hours to run 10 billion times";
 
         $days = $hours / 24;
 
-        echo PHP_EOL . "It would take {$days} days to run 1 billion times";
+        echo PHP_EOL . "It would take {$days} days to run 10 billion times";
     }
 }
 
