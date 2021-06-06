@@ -32,7 +32,6 @@ class HelperTest extends TestCase
         $this->assertEquals($files, $deleted);
     }
 
-    public function testOrderRandomNumbers()
     /**
      * Test function to sort random small numbers
      */
