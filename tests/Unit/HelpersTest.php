@@ -50,15 +50,17 @@ class HelperTest extends TestCase
         // Assert is the same
         $this->assertEquals($sorted, $numbers);
 
-        for ($i = 0; $i < 11; $i++) {
-            $numbers[] = rand(0, 99);
-        }
-
-        $times = 1000; // 10k
-
+        $times = 1000;
         $timelapse = -hrtime(true);
 
         for ($i = 0; $i < $times; $i++) {
+            // regenerate numbers each time?
+            // $numbers = [];
+
+            // for ($n = 0; $n < 11; $n++) {
+            //     $numbers[] = rand(0, 99);
+            // }
+
             array_sort_numbers($numbers);
         }
 
