@@ -1,6 +1,6 @@
 # Backend Assignment
 
-A) Design a SQL database to store NBA players, teams and games (column and table contents are all up to you). 
+## A) Design a SQL database to store NBA players, teams and games (column and table contents are all up to you). 
 
 Users mostly query game results by date and team name. 
 
@@ -128,3 +128,13 @@ Schema::create('game_events', function (Blueprint $table) {
         ->onDelete('restrict');
 });
 ```
+
+## B) How would you find files that begin with "0aH" and delete them given a folder (with subfolders)? Assume there are many files in the folder.
+
+The function is implemented [here](https://github.com/gabrielkoerich/backend-assignment/blob/master/app/helpers.php#10).
+
+The helper file is loaded via composer.
+
+The implementation is being tested [here](https://github.com/gabrielkoerich/backend-assignment/blob/master/tests/Unit/HelpersTest.php#L19).
+
+Tests are runing on every push via [Github Actions](https://github.com/gabrielkoerich/backend-assignment/actions).
