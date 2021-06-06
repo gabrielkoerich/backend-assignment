@@ -12,4 +12,13 @@ class JsonPlaceholderPostRepository extends ApiRepository
      * The resource
      */
     protected string $resource = 'posts';
+
+    /**
+     * Define comments relation
+     */
+    public function comments(int $postId): JsonPlaceholderCommentRepository
+    {
+        return (new JsonPlaceholderCommentRepository($this->client))
+            ->fromRelation($this->resource, $postId);
+    }
 }
