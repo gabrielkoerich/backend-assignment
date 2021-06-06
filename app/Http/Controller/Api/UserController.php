@@ -32,4 +32,12 @@ class UserController
     {
         return $this->users->find($id);
     }
+
+    /**
+     * Find all user posts
+     */
+    public function findPosts($id)
+    {
+        return $this->users->posts($id)->all();
+    }
 }

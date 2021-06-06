@@ -16,3 +16,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/user', [App\Http\Controller\Api\UserController::class, 'index']);
 Route::get('/user/{id}', [App\Http\Controller\Api\UserController::class, 'find']);
+Route::get('/user/{id}/posts', [App\Http\Controller\Api\UserController::class, 'findPosts']);

@@ -41,4 +41,17 @@ class UserControllerTest extends TestCase
         $this->assertEquals('Kurtis Weissnat', $user->name);
         $this->assertEquals('Telly.Hoeger@billy.biz', $user->email);
     }
+
+    /**
+     * Test list all user posts
+     */
+    public function testListUserPosts()
+    {
+        $id = 3;
+
+        $response = $this->get("api/user/{$id}/posts");
+
+        $response->assertStatus(200)
+            ->assertJsonFragment(['title' => 'asperiores ea ipsam voluptatibus modi minima quia sint']);
+    }
 }
