@@ -203,7 +203,7 @@ This Client is used by the abstract (APIRepository)[https://github.com/gabrielko
 
 It is also responsible for caching the request if the property `$cacheMinutes` is greater than 0. The cache is handled automatically. It's kind of weird to implement cache this way, but it works.
 
-Probably this class is doing too much and the cache should be implemented on its own class and injected on that one.
+And I think this class is doing too much and the cache should be implemented on its own class and injected on that one.
 
 I created the tables for caching using the migrations:
 
