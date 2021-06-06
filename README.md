@@ -1,4 +1,4 @@
-### Backend Assignment
+# Backend Assignment
 
 A) Design a SQL database to store NBA players, teams and games (column and table contents are all up to you). 
 
@@ -12,9 +12,7 @@ teams
 - DATETIME created_at
 - DATETIME updated_at
 
-```
-php
-
+```php
     Schema::create('teams', function (Blueprint $table) {
         $table->id();
         $table->string('name');
@@ -29,8 +27,7 @@ players
 - DATETIME created_at
 - DATETIME updated_at
 
-```
-php
+```php
     Schema::create('teams', function (Blueprint $table) {
         $table->id();
         $table->string('name')->index();
@@ -48,8 +45,7 @@ games
 - DATETIME created_at
 - DATETIME updated_at
 
-```
-php
+```php
     Schema::create('games', function (Blueprint $table) {
         $table->id();
         $table->datetime('datetime');
@@ -78,8 +74,7 @@ game_player
 - DATETIME created_at
 - DATETIME updated_at
 
-```
-php
+```php
     Schema::create('game_player', function (Blueprint $table) {
         $table->id();
         $table->unsignedBigInteger('game_id');
@@ -108,8 +103,7 @@ game_events
 - DATETIME created_at
 - DATETIME updated_at
 
-```
-php
+```php
     Schema::create('game_player', function (Blueprint $table) {
         $table->id();
         $table->unsignedBigInteger('game_id');
