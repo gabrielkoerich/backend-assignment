@@ -161,9 +161,15 @@ abstract class ApiRepository
      */
     private function invalidateCache()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        if ($mysql = config('database.default') === 'mysql') {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        }
 
-        return tap(DB::table($this->resource)->truncate(), fn () => DB::statement('SET FOREIGN_KEY_CHECKS=1'));
+        return tap(DB::table($this->resource)->truncate(), function () use ($mysql) {
+            if ($mysql) {
+                DB::statement('SET FOREIGN_KEY_CHECKS=1');
+            }
+        });
     }
 
     /**
