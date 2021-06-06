@@ -5,6 +5,7 @@ namespace App\Api\JsonPlaceholder;
 use Carbon\Carbon;
 use RuntimeException;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -122,6 +123,12 @@ abstract class ApiRepository
             $data = $data->map(function ($record) {
                 foreach ($record as $key => $value) {
                     if (is_array($value)) {
+                        unset($record[$key]);
+                    }
+
+                    if (Str::snake($key) !== $key) {
+                        $record[Str::snake($key)] = $value;
+
                         unset($record[$key]);
                     }
                 }
