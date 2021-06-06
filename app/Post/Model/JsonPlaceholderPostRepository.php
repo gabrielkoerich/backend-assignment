@@ -19,6 +19,6 @@ class JsonPlaceholderPostRepository extends ApiRepository
     public function comments(int $postId): JsonPlaceholderCommentRepository
     {
         return (new JsonPlaceholderCommentRepository($this->client))
-            ->fromRelation($this->resource, $postId);
+            ->related($postId);
     }
 }

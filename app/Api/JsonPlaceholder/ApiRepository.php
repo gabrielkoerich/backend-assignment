@@ -40,9 +40,12 @@ abstract class ApiRepository
         return $this->client->find($this->resource, $id);
     }
 
-    public function fromRelation(string $resource, int $id)
+    /**
+     * Set the related resource.
+     */
+    public function related(int $id)
     {
-        $this->client->fromRelation($resource, $id);
+        $this->client->fromRelation($this->resource, $id);
 
         return $this;
     }

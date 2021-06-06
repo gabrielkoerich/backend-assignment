@@ -20,6 +20,6 @@ class JsonPlaceholderUserRepository extends ApiRepository
     public function posts(int $userId): JsonPlaceholderPostRepository
     {
         return (new JsonPlaceholderPostRepository($this->client))
-            ->fromRelation($this->resource, $userId);
+            ->related($userId);
     }
 }
