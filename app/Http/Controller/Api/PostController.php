@@ -2,6 +2,7 @@
 
 namespace App\Http\Controller\Api;
 
+use Illuminate\Http\Response;
 use App\Post\Model\JsonPlaceholderPostRepository;
 
 class PostController
@@ -17,24 +18,30 @@ class PostController
     /**
      * List all resources.
      */
-    public function index()
+    public function index(): Response
     {
-        return $this->posts->all();
+        $posts = $this->posts->all();
+
+        return new Response($posts, 200);
     }
 
     /**
      * Find a post.
      */
-    public function find(int $id)
+    public function find(int $id): Response
     {
-        return $this->posts->find($id);
+        $post = $this->posts->find($id);
+
+        return new Response($post, 200);
     }
 
     /**
      * Find all post comments posts
      */
-    public function findComments(int $id)
+    public function findComments(int $id): Response
     {
-        return $this->posts->comments($id)->all();
+        $comments = $this->posts->comments($id)->all();
+
+        return new Response($comments, 200);
     }
 }

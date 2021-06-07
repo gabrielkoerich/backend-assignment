@@ -2,13 +2,11 @@
 
 namespace App\Http\Controller\Api;
 
+use Illuminate\Http\Response;
 use App\User\Model\JsonPlaceholderUserRepository;
-use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class UserController
 {
-    use ValidatesRequests;
-
     /**
      * Create a new instance.
      */
@@ -20,24 +18,30 @@ class UserController
     /**
      * List all resources.
      */
-    public function index()
+    public function index(): Response
     {
-        return $this->users->all();
+        $users = $this->users->all();
+
+        return new Response($users, 200);
     }
 
     /**
      * Find a user.
      */
-    public function find(int $id)
+    public function find(int $id): Response
     {
-        return $this->users->find($id);
+        $user = $this->users->find($id);
+
+        return new Response($user, 200);
     }
 
     /**
      * Find all user posts
      */
-    public function findPosts(int $id)
+    public function findPosts(int $id): Response
     {
-        return $this->users->posts($id)->all();
+        $posts = $this->users->posts($id)->all();
+
+        return new Response($posts, 200);
     }
 }

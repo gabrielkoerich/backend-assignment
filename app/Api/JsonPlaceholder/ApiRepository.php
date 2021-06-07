@@ -71,10 +71,6 @@ abstract class ApiRepository
 
         $data = $this->client->find($this->resource, $id);
 
-        if ($this->shouldCache()) {
-            $this->cache($data);
-        }
-
         return $data;
     }
 
