@@ -22,6 +22,7 @@ class UserController
     {
         $users = $this->users->all();
 
+        // Should be returned with more data if we had pagination
         return new Response($users, 200);
     }
 

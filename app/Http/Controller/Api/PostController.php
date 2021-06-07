@@ -22,6 +22,7 @@ class PostController
     {
         $posts = $this->posts->all();
 
+        // Should be returned with more data if we had pagination
         return new Response($posts, 200);
     }
 
