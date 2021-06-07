@@ -201,7 +201,9 @@ The Client is responsible for making the requests and translate them to a Collec
 
 This Client is used by the abstract (APIRepository)[https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiRepository.php], which is responsible to set the resource to make the requests.
 
-It is also responsible for caching the request if the property `$cacheMinutes` is greater than 0. The cache is handled automatically. It's kind of weird to implement cache this way, but it works.
+I thought that I would need to create the repository and then later change the implentation to a local one (using eloquent), but that wasn't need. So maybe this should be better called as a `Resource` and not a repository. That would be something to change later.
+
+That class is also responsible for caching the request if the property `$cacheMinutes` is greater than 0. The cache is handled automatically. It's kind of weird to implement cache this way, but it works.
 
 And I think this class is doing too much and the cache should be implemented on its own class and injected on that one.
 
