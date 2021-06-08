@@ -193,7 +193,7 @@ The application is structured by contexts, I created the Post context, where it 
 
 The API namespace has the base classes for API / integrations implementations. 
 
-I'm not a big fan of the base structure of laravel.
+I'm not a big fan of the base structure of laravel. I had talk about that: https://github.com/gabrielkoerich/gabrielkoerich/blob/master/talks/Contexts.md
 
 I first wrote a [APIClient](https://github.com/gabrielkoerich/backend-assignment/blob/master/app/Api/JsonPlaceholder/ApiClient.php) to request the JsonPlaceholder API.
 
