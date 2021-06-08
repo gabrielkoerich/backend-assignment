@@ -234,9 +234,15 @@ $ cp .env.example .env
 3) Run migrations and seeds:
 ```bash
 $ php artisan migrate
+$ php artisan db:seed
 ```
 
-Request the API routes:
+An user and a token will be created, use that token to make the API calls:
+
+Header:
+Authorization Bearer `{token}`
+
+API routes:
 
 GET `/api/user`
 
