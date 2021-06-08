@@ -3,6 +3,8 @@
 namespace Tests\Feature\Api;
 
 use Tests\TestCase;
+use Laravel\Sanctum\Sanctum;
+use App\User\Model\InternalUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -16,6 +18,8 @@ class PostControllerTest extends TestCase
      */
     public function testGetAllPosts()
     {
+        Sanctum::actingAs(InternalUser::factory()->create(), ['*']);
+
         // Cache users first bc of foreign keys
         $this->get('api/user');
 
@@ -37,6 +41,8 @@ class PostControllerTest extends TestCase
      */
     public function testFindPost()
     {
+        Sanctum::actingAs(InternalUser::factory()->create(), ['*']);
+
         // Cache users first bc of foreign keys
         $this->get('api/user');
 
@@ -67,6 +73,8 @@ class PostControllerTest extends TestCase
      */
     public function testListPostComments()
     {
+        Sanctum::actingAs(InternalUser::factory()->create(), ['*']);
+
         // Cache users first bc of foreign keys
         $this->get('api/user');
         $this->get('api/post');
